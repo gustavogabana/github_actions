@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: HTML5Validator
-        uses: Cyb3r-Jak3/html5validator-action@7.2.0
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
         with:
           root: './'
           css: false
@@ -21,7 +21,7 @@ jobs:
           # blacklist: 'node_modules/**' # ignore files or folders
 
       - name: Save error logs
-        if: failure() # Only runs if the previous step fails
+        if: failure() # Only runs if the previous step fails, not if some error is found, but if the action itself fails
         uses: actions/upload-artifact@v4
         with:
           name: relatorio-validacao
