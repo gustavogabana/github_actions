@@ -1,0 +1,27 @@
+name: Learning GitHub Actions
+run-name: ${{ github.actor }} trying actions
+
+on:
+  push:
+    branches: ["develop", "main"] # where the pipeline will be triggered
+
+jobs:
+  verificate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate HTML
+        uses: w3c/validate-file-action@v1
+        with:
+          target: './'
+
+  fake_deploy:
+    needs: verificate # onlye executes if vericiate pass
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: Fake Deploy
+        run: echo "Deploying to production environment..."
+
