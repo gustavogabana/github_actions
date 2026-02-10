@@ -30,7 +30,7 @@ jobs:
   fake_deploy:
     needs: verificate # onlye executes if vericiate pass
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main' # only executes on main branch
     steps:
       - name: Fake Deploy
         run: echo "Deploying to production environment..."
